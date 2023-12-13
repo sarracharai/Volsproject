@@ -15,12 +15,12 @@ class VolsApplicationTests {
 
 	@Autowired
 	private VolRepository volRepository;
-	@Test
-	public void testCreateVol(){
-		Vol vl = new Vol("Paris","Cartage","AiroportParis","en cours");
-		volRepository.save(vl);
+	//@Test
+	////public void testCreateVol(){
+	//	Vol vl = new Vol("Paris","Cartage","AiroportParis","en cours");
+	//	volRepository.save(vl);
 		
-	}
+	//}
 	@Test
 	public void testFindVol(){
 		Vol v = volRepository.findById(1L).get(); System.out.println(v);

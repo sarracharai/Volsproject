@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
+import com.sarra.vols.entities.Avion;
 import com.sarra.vols.entities.Vol;
 
 @SpringBootApplication
@@ -20,7 +21,10 @@ public class VolsApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		repositoryRestConfiguration.exposeIdsFor(Vol.class);
+		repositoryRestConfiguration.exposeIdsFor(Vol.class,Avion.class);
 	}
+	
+	
+	
 
 }

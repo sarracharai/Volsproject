@@ -1,10 +1,18 @@
 package com.sarra.vols.entities;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 
 @Entity
@@ -27,14 +35,30 @@ public class Vol {
 	
 	@ManyToOne
 	private Avion avion;
+	
+	 /*@OneToOne
+	private Image image;
+*/
+	
+	@ManyToOne
+	private Formation formation;
+	
+	@OneToMany (mappedBy = "vol")
+	private List<Image> images;
+	
 
 
-	public Vol(String destinationV, String aeroportDepartV, String aeroportArriveeV, String statutV) {
+	public Vol(Long idV, String destinationV, String aeroportDepartV, String aeroportArriveeV, String statutV,
+			Avion avion,List<Image> images ) {
 		super();
+		this.idV = idV;
 		this.destinationV = destinationV;
 		this.aeroportDepartV = aeroportDepartV;
 		this.aeroportArriveeV = aeroportArriveeV;
 		this.statutV = statutV;
+		this.avion = avion;
+		this.images = images;
+		//this.image = image;
 	}
 
 
@@ -109,11 +133,37 @@ public class Vol {
 	}
 
 
+/*
+	public Image getImage() {
+		return image;
+	}
+
+
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+	
+	*/
+
+
 
 	@Override
 	public String toString() {
 		return "Vol [idV=" + idV + ", destinationV=" + destinationV + ", aeroportDepartV=" + aeroportDepartV
 				+ ", aeroportArriveeV=" + aeroportArriveeV + ", statutV=" + statutV + "]";
+	}
+
+
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+
+
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
 	
 	

@@ -1,6 +1,7 @@
 package com.sarra.vols.service;
 
 import java.util.List;
+import com.sarra.vols.repos.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,24 @@ public class VolServiceImpl implements VolService{
 	
 	@Autowired 
 	VolRepository volRepository;
+	
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Override
 	public Vol saveVol(Vol v) {
 		return volRepository.save(v);
 	}
 
+	
 	@Override
 	public Vol updateVol(Vol v) {
-		return volRepository.save(v);
+	//Long oldVImageId = this.getVol(v.getIdV()).getImage().getIdImage();
+	//Long newVImageId = v.getImage().getIdImage();
+	Vol vUpdated = volRepository.save(v);
+	//if (oldVImageId != newVImageId) //si l'image a été modifiée
+	//imageRepository.deleteById(oldVImageId);
+	return vUpdated;
 	}
 
 	@Override

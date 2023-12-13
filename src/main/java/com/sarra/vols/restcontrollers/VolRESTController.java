@@ -17,31 +17,36 @@ import com.sarra.vols.service.VolService;
 @RequestMapping("/api")
 @CrossOrigin
 public class VolRESTController {
+	
 	@Autowired
 	VolService volService;
 	
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(path="all",method = RequestMethod.GET)
 	public List<Vol> getAllVols() {
-	return volService.getAllVols();
+		return volService.getAllVols();
 	}
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public Vol getVolById(@PathVariable("id") Long id) { return volService.getVol(id);
+	@RequestMapping(value="/getbyid/{id}",method = RequestMethod.GET)
+	public Vol getVolById(@PathVariable("id") Long id) { 
+		return volService.getVol(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/addv",method = RequestMethod.POST)
+	//@PostMapping("//addvs")
 	public Vol createVol(@RequestBody Vol vol) {
 	return volService.saveVol(vol);
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value="/updatev",method = RequestMethod.PUT)
+	//@PutMaping("/updatev")
 	public Vol updateVol(@RequestBody Vol vol) {
 	return volService.updateVol(vol);
 	}
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/delv/{id}",method = RequestMethod.DELETE)
+	//@DeleteMapping("/delv/{id}")
 	public void deleteVol(@PathVariable("id") Long id)
 	{
 		volService.deleteVolById(id);
@@ -50,6 +55,11 @@ public class VolRESTController {
 	@RequestMapping(value="/vsav/{idAv}",method = RequestMethod.GET)
 	public List<Vol> getVolsByAvId(@PathVariable("idAv") Long idAv) {
 	return volService.findByAvionIdAv(idAv);
+	}
+	
+	@RequestMapping(value="/vsByDestination/{destination}",method = RequestMethod.GET)
+	public List<Vol> findBydestinationVContains(@PathVariable("destination") String destinationV) {
+	return volService.findBydestinationVContains(destinationV);
 	}
 	
 }
