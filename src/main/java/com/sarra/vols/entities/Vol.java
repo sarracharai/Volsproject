@@ -40,8 +40,7 @@ public class Vol {
 	private Image image;
 */
 	
-	@ManyToOne
-	private Formation formation;
+	
 	
 	@OneToMany (mappedBy = "vol")
 	private List<Image> images;
